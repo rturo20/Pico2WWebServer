@@ -2,9 +2,7 @@
 #include "pico/stdio_usb.h"
 #include "pico/cyw43_arch.h"
 #include "lwip/apps/httpd.h"
-
-const char WIFI_SSID[] = "Treviso";
-const char WIFI_PASSWORD[] = "Garbin@1921";
+#include "wifi_config.h"
 
 void blink_pattern(int count) {
     for(int i = 0; i < count; i++) {
@@ -33,7 +31,6 @@ void blink_heartbeat() {
         sleep_ms(2000);
     }
 }
-
 
 int main() {
     stdio_init_all(); 

@@ -1,0 +1,17 @@
+# Sensitive configuration files
+config.h
+wifi_config.h
+
+# Build directory
+build/
+
+# Generated files
+fsdata_custom.c
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+

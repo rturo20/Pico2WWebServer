@@ -1,0 +1,12 @@
+// WiFi Configuration Template
+// Copy this file to wifi_config.h and fill in your credentials
+// wifi_config.h is in .gitignore and will NOT be committed
+
+#ifndef WIFI_CONFIG_H
+#define WIFI_CONFIG_H
+
+const char WIFI_SSID[] = "YourWiFiNetwork";
+const char WIFI_PASSWORD[] = "YourPassword";
+
+#endif // WIFI_CONFIG_H
+
