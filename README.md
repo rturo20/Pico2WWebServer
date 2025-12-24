@@ -220,3 +220,6 @@ This project is provided as-is for educational and personal use.
 
 Rturo Treviso
 
+## Todo List
+
+- [ ] Improve Security Access (SSID PASSWORD protection)
