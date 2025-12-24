@@ -1,0 +1,7 @@
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/pioasm.dir
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/edit_cache.dir
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/rebuild_cache.dir
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/list_install_components.dir
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/install.dir
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/install/local.dir
+/home/pi/Code/Pico2W/Webserver/build/pioasm/CMakeFiles/install/strip.dir
