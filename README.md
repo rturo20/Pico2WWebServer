@@ -1,6 +1,6 @@
 # Raspberry Pi Pico 2W Web Server
 
-A lightweight web server implementation for the Raspberry Pi Pico 2W microcontroller, serving HTML, CSS, and JavaScript files over WiFi using the lwIP HTTP server.
+A lightweight web server implementation for the Raspberry Pi Pico 2W microcontroller, written in C++. Serves HTML, CSS, and JavaScript files over WiFi using the lwIP HTTP server.
 
 ## Features
 
@@ -26,7 +26,7 @@ A lightweight web server implementation for the Raspberry Pi Pico 2W microcontro
 ### Software
 - Raspberry Pi Pico SDK
 - CMake (version 3.13 or higher)
-- ARM GCC toolchain
+- ARM GCC toolchain (C++17 support)
 - Python 3 (for filesystem generation)
 - picotool (optional, for easy deployment)
 
@@ -204,6 +204,7 @@ make
 
 ## Technical Details
 
+- **Programming Language**: C++ (C++17 standard)
 - **Network Stack**: lwIP (lightweight IP)
 - **HTTP Server**: lwIP HTTP daemon
 - **WiFi Driver**: CYW43 (threadsafe background mode)
