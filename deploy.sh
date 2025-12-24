@@ -9,8 +9,26 @@ python3 /home/pi/pico/pico-sdk/src/rp2_common/pico_lwip/tools/makefsdata.py \
     -i fs/index.html fs/style.css fs/script.js \
     -o fsdata_custom.c
 
-echo "=== Building project (incremental) ==="
+echo "=== Checking build configuration ==="
+# Create build directory if it doesn't exist
+if [ ! -d "build" ]; then
+    echo "Build directory not found. Creating and configuring..."
+    mkdir -p build
+    cd build
+    cmake ..
+    cd ..
+elif [ "CMakeLists.txt" -nt "build/CMakeCache.txt" ] || [ ! -f "build/CMakeCache.txt" ]; then
+    echo "CMakeLists.txt changed or build not configured. Reconfiguring..."
+    cd build
+    cmake ..
+    cd ..
+else
+    echo "Build configuration is up to date."
+fi
+
+echo "=== Building project ==="
 cd build
+# Make will do incremental builds automatically
 make
 
 echo ""

@@ -12659,7 +12659,8 @@ CMakeFiles/pico_web_server.dir/main.cpp.o: /home/pi/Code/Pico2W/Webserver/main.c
   /home/pi/pico/pico-sdk/src/rp2_common/pico_cyw43_arch/include/pico/cyw43_arch/arch_threadsafe_background.h \
   /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd.h \
   /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd_opts.h \
-  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/prot/iana.h
+  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/prot/iana.h \
+  /home/pi/Code/Pico2W/Webserver/wifi_config.h
 
 
 /home/pi/pico/pico-sdk/src/common/pico_stdlib_headers/include/pico/stdlib.h:
@@ -13289,6 +13290,8 @@ generated/pico_base/pico/version.h:
 /home/pi/pico/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c:
 
 /home/pi/pico/pico-sdk/src/rp2350/hardware_regs/include/hardware/regs/pads_bank0.h:
+
+/home/pi/Code/Pico2W/Webserver/wifi_config.h:
 
 /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/priv/memp_std.h:
 

@@ -131,4 +131,5 @@ CMakeFiles/pico_web_server.dir/main.cpp.o: \
  /home/pi/pico/pico-sdk/src/rp2_common/pico_cyw43_arch/include/pico/cyw43_arch/arch_threadsafe_background.h \
  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd.h \
  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd_opts.h \
- /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/prot/iana.h
+ /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/prot/iana.h \
+ /home/pi/Code/Pico2W/Webserver/wifi_config.h

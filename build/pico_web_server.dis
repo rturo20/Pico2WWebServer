@@ -47,13 +47,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  21 .debug_rnglists 00009bd4  00000000  00000000  00127cb8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line   00047837  00000000  00000000  0013188c  2**0
+ 22 .debug_line   00047848  00000000  00000000  0013188c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_str    00011766  00000000  00000000  001790c3  2**0
+ 23 .debug_str    00011766  00000000  00000000  001790d4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 24 .debug_frame  000074d4  00000000  00000000  0018a82c  2**2
+ 24 .debug_frame  000074d4  00000000  00000000  0018a83c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 25 .debug_line_str 000001ff  00000000  00000000  00191d00  2**0
+ 25 .debug_line_str 000001ff  00000000  00000000  00191d10  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 /home/pi/Code/Pico2W/Webserver/build/pico_web_server.elf:     file format elf32-littlearm
