@@ -1,26 +1,73 @@
 #!/usr/bin/perl
+#
+# ============================================================================
+# makefsdata - Filesystem Data Generator for lwIP HTTP Server
+# ============================================================================
+#
+# Purpose:
+#   This Perl script converts web files (HTML, CSS, JS, images) from the fs/
+#   directory into a C source file containing embedded filesystem data. The
+#   generated C file is compiled into the firmware, allowing the Pico 2W to
+#   serve web content without requiring external storage.
+#
+# Language:
+#   Written in Perl. This is a legacy script from the lwIP project that
+#   generates C code containing the web files as byte arrays.
+#
+# When is it invoked:
+#   - Manually: Run this script before building to regenerate fsdata_custom.c
+#   - Automatically: The deploy.sh script calls the Python version (makefsdata.py)
+#     from the Pico SDK, which is the recommended modern replacement
+#
+# Input:
+#   - Files in the fs/ directory (index.html, style.css, script.js, etc.)
+#
+# Output:
+#   - fsdata.c: C source file containing:
+#     * HTTP headers for each file
+#     * File contents as unsigned char arrays (hex format)
+#     * Filesystem structure linking all files together
+#
+# How it works:
+#   1. Scans the fs/ directory for all files
+#   2. Generates HTTP headers (status, content-type) for each file
+#   3. Converts file contents to C byte arrays (hex format)
+#   4. Creates a linked list structure of files for lwIP's HTTP server
+#
+# Note: This script is provided for reference. The project uses makefsdata.py
+#       (Python version) from the Pico SDK, which is more modern and reliable.
+# ============================================================================
 
 open(OUTPUT, "> fsdata.c");
 
+# Change to the fs/ directory to scan for web files
 chdir("fs");
+# Find all regular files in the directory tree
 open(FILES, "find . -type f |");
 
+# Process each file found in the fs/ directory
 while($file = <FILES>) {
 
-    # Do not include files in CVS directories nor backup files.
+    # Skip files in CVS directories and backup files (files ending with ~)
     if($file =~ /(CVS|~)/) {
     	next;
     }
     
+    # Remove newline character from filename
     chop($file);
     
+    # Generate HTTP response headers for this file
+    # Headers are prepended to file content and sent by the HTTP server
     open(HEADER, "> /tmp/header") || die $!;
+    # Set HTTP status line (404 for error pages, 200 OK for normal files)
     if($file =~ /404/) {
 	print(HEADER "HTTP/1.0 404 File not found\r\n");
     } else {
 	print(HEADER "HTTP/1.0 200 OK\r\n");
     }
+    # Server identification header
     print(HEADER "Server: lwIP/pre-0.6 (http://www.sics.se/~adam/lwip/)\r\n");
+    # Set Content-Type header based on file extension
     if($file =~ /\.html$/) {
 	print(HEADER "Content-type: text/html\r\n");
     } elsif($file =~ /\.gif$/) {
@@ -34,38 +81,53 @@ while($file = <FILES>) {
     } elsif($file =~ /\.ram$/) {
 	print(HEADER "Content-type: audio/x-pn-realaudio\r\n");    
     } else {
+	# Default content type for unknown file types
 	print(HEADER "Content-type: text/plain\r\n");
     }
+    # End of headers (blank line)
     print(HEADER "\r\n");
     close(HEADER);
 
+    # Combine HTTP headers with file content (unless it's a plain file or CGI)
+    # Plain files and CGI scripts don't get headers prepended
     unless($file =~ /\.plain$/ || $file =~ /cgi/) {
 	system("cat /tmp/header $file > /tmp/file");
     } else {
 	system("cp $file /tmp/file");
     }
     
+    # Open the combined file for reading
     open(FILE, "/tmp/file");
+    # Clean up temporary files
     unlink("/tmp/file");
     unlink("/tmp/header");
 
+    # Create a valid C variable name from the file path
+    # Remove leading dot from path (e.g., "./index.html" -> "/index.html")
     $file =~ s/\.//;
     $fvar = $file;
+    # Replace slashes and dots with underscores for valid C identifier
     $fvar =~ s-/-_-g;
     $fvar =~ s-\.-_-g;
+    # Start generating C array declaration
     print(OUTPUT "static const unsigned char data".$fvar."[] = {\n");
     print(OUTPUT "\t/* $file */\n\t");
+    # First, encode the filename as hex bytes (for filesystem lookup)
     for($j = 0; $j < length($file); $j++) {
 	printf(OUTPUT "%#02x, ", unpack("C", substr($file, $j, 1)));
     }
+    # Null terminator for filename
     printf(OUTPUT "0,\n");
     
     
+    # Now encode the file content (headers + body) as hex bytes
     $i = 0;
     while(read(FILE, $data, 1)) {
+        # Format output: 10 bytes per line for readability
         if($i == 0) {
             print(OUTPUT "\t");
         }
+        # Convert each byte to hex format (0x##, )
         printf(OUTPUT "%#02x, ", unpack("C", $data));
         $i++;
         if($i == 10) {
@@ -73,25 +135,37 @@ while($file = <FILES>) {
             $i = 0;
         }
     }
+    # Close the C array
     print(OUTPUT "};\n\n");
     close(FILE);
+    # Store variable name and file path for later use in filesystem structure
     push(@fvars, $fvar);
     push(@files, $file);
 }
 
+# Generate filesystem structure: linked list of files
+# Each file structure contains: pointer to next file, pointer to data, pointer to content start, content length
 for($i = 0; $i < @fvars; $i++) {
     $file = $files[$i];
     $fvar = $fvars[$i];
 
+    # First file points to NULL, others point to previous file (reverse linked list)
     if($i == 0) {
         $prevfile = "NULL";
     } else {
         $prevfile = "file" . $fvars[$i - 1];
     }
+    # Create fsdata_file structure:
+    # - First field: pointer to next file in list
+    # - Second field: pointer to start of data array (includes filename)
+    # - Third field: pointer to start of content (after filename + null terminator)
+    # - Fourth field: size of content (total size minus filename overhead)
     print(OUTPUT "const struct fsdata_file file".$fvar."[] = {{$prevfile, data$fvar, ");
     print(OUTPUT "data$fvar + ". (length($file) + 1) .", ");
     print(OUTPUT "sizeof(data$fvar) - ". (length($file) + 1) ."}};\n\n");
 }
 
+# Define the root of the filesystem (last file in the list, which points to all others)
 print(OUTPUT "#define FS_ROOT file$fvars[$i - 1]\n\n");
+# Define the total number of files in the filesystem
 print(OUTPUT "#define FS_NUMFILES $i\n");
