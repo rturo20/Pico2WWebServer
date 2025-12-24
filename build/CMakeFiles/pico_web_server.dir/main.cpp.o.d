@@ -132,4 +132,7 @@ CMakeFiles/pico_web_server.dir/main.cpp.o: \
  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd.h \
  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd_opts.h \
  /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/prot/iana.h \
+ /home/pi/pico/pico-sdk/src/rp2_common/hardware_pwm/include/hardware/pwm.h \
+ /home/pi/pico/pico-sdk/src/rp2350/hardware_structs/include/hardware/structs/pwm.h \
+ /home/pi/pico/pico-sdk/src/rp2350/hardware_regs/include/hardware/regs/pwm.h \
  /home/pi/Code/Pico2W/Webserver/wifi_config.h

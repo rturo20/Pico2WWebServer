@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pico 2W Web Server</title>
+    <title>Servo Control</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Dan's Raspberry Pi Pico 2W Web Server</h1>
+    <h1>Servo Control</h1>
     <div id="content">
-        <p>Server is running!</p>
-        <button onclick="handleClick()">Click Me</button>
+        <label class="switch">
+            <input type="checkbox" id="servoSwitch" onchange="toggleServo()">
+            <span class="slider"></span>
+        </label>
+        <p id="status">Servo: OFF</p>
     </div>
     <script src="script.js"></script>
 </body>

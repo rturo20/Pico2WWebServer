@@ -167,6 +167,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "/home/pi/pico/pico-sdk/src/rp2_common/hardware_dma/include"
   "/home/pi/pico/pico-sdk/src/rp2_common/hardware_exception/include"
   "/home/pi/pico/pico-sdk/src/rp2_common/pico_cyw43_driver/include"
+  "/home/pi/pico/pico-sdk/src/rp2_common/hardware_pwm/include"
   )
 
 # The set of dependency files which are needed:

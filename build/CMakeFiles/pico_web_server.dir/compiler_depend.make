@@ -12660,8 +12660,13 @@ CMakeFiles/pico_web_server.dir/main.cpp.o: /home/pi/Code/Pico2W/Webserver/main.c
   /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd.h \
   /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/apps/httpd_opts.h \
   /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/prot/iana.h \
+  /home/pi/pico/pico-sdk/src/rp2_common/hardware_pwm/include/hardware/pwm.h \
+  /home/pi/pico/pico-sdk/src/rp2350/hardware_structs/include/hardware/structs/pwm.h \
+  /home/pi/pico/pico-sdk/src/rp2350/hardware_regs/include/hardware/regs/pwm.h \
   /home/pi/Code/Pico2W/Webserver/wifi_config.h
 
+
+/home/pi/pico/pico-sdk/src/rp2_common/hardware_pwm/include/hardware/pwm.h:
 
 /home/pi/pico/pico-sdk/src/common/pico_stdlib_headers/include/pico/stdlib.h:
 
@@ -13050,6 +13055,8 @@ pico-sdk/src/rp2_common/pico_cyw43_driver/cyw43_bus_pio_spi.pio.h:
 /usr/include/newlib/alloca.h:
 
 /usr/include/newlib/sys/reent.h:
+
+/home/pi/pico/pico-sdk/src/rp2350/hardware_structs/include/hardware/structs/pwm.h:
 
 /home/pi/pico/pico-sdk/src/rp2_common/pico_double/double_math.c:
 
@@ -13604,6 +13611,8 @@ generated/pico_base/pico/version.h:
 /home/pi/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c:
 
 /home/pi/pico/pico-sdk/lib/lwip/src/core/ipv6/dhcp6.c:
+
+/home/pi/pico/pico-sdk/src/rp2350/hardware_regs/include/hardware/regs/pwm.h:
 
 /home/pi/pico/pico-sdk/lib/lwip/src/include/lwip/ip6_addr.h:
 

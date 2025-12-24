@@ -6,6 +6,7 @@ A lightweight web server implementation for the Raspberry Pi Pico 2W microcontro
 
 - 🌐 **HTTP Web Server**: Serves static web content using lwIP HTTP server
 - 📡 **WiFi Connectivity**: Connects to WiFi networks using the Pico 2W's built-in WiFi
+- 🎛️ **Servo Motor Control**: Web-based servo control with on/off toggle switch
 - 💡 **LED Status Indicators**: Visual feedback through LED blink patterns:
   - 1 blink: Initialization OK
   - 2 blinks: Connecting to WiFi
@@ -22,6 +23,9 @@ A lightweight web server implementation for the Raspberry Pi Pico 2W microcontro
 - Raspberry Pi Pico 2W
 - USB cable for programming
 - WiFi network access
+- Servo motor (optional, for servo control functionality)
+  - Standard servo motor (e.g., SG90, MG90S)
+  - External 5V power supply (recommended for servos that draw high current)
 
 ### Software
 - Raspberry Pi Pico SDK
@@ -75,6 +79,26 @@ PICO_IP="192.168.1.xxx"  # Your Pico's IP address
 ```
 
 The Pico will obtain an IP address via DHCP. Check your router's DHCP client list or use a network scanner to find the assigned IP.
+
+### 4. Servo Motor Wiring (Optional)
+
+If you want to use the servo control feature, connect a servo motor as follows:
+
+**Standard Servo Motor Connections:**
+- **Red wire (VCC/5V)** → VSYS (pin 39) or VBUS (pin 40)
+  - *Note: For servos that draw high current, use an external 5V power supply and connect its ground to Pico's GND*
+- **Black/Brown wire (GND)** → Any GND pin (e.g., pin 38, 3, 8, 13, 18, 23, 28, 33)
+- **Orange/Yellow wire (Signal)** → GPIO 16 (physical pin 21)
+
+**Power Considerations:**
+- Small servos (like SG90) may work directly from VSYS/VBUS
+- Larger servos should use an external 5V power supply
+- Always connect the external power supply's ground to the Pico's GND (common ground)
+
+**To use a different GPIO pin**, edit `main.cpp` and change:
+```cpp
+#define SERVO_PIN 16  // Change to desired GPIO pin (0, 1, 2, etc.)
+```
 
 ## Building
 
@@ -161,6 +185,22 @@ The Pico will automatically reboot and start the web server.
 3. Find the Pico's IP address (check router DHCP list or use network scanner)
 4. Open a web browser and navigate to: `http://<pico-ip-address>/index.html`
 
+### Servo Control
+
+The web interface provides a servo control page with an on/off toggle switch:
+
+1. **Toggle Servo ON**: Click the switch to turn it ON
+   - Servo moves to middle position (1.5ms pulse width)
+   - Status displays "Servo: ON" in green
+   - LED on Pico blinks briefly to confirm command received
+
+2. **Toggle Servo OFF**: Click the switch again to turn it OFF
+   - Servo stops receiving PWM signal
+   - Status displays "Servo: OFF"
+   - LED on Pico blinks briefly to confirm command received
+
+**Note**: The servo control uses CGI (Common Gateway Interface) to communicate between the web page and the Pico. Commands are sent via HTTP GET requests to `/servo?action=on` or `/servo?action=off`.
+
 ## Customizing Web Content
 
 1. Edit files in the `fs/` directory:
@@ -202,13 +242,44 @@ make
 - Ensure all dependencies are installed
 - Try cleaning the build directory: `rm -rf build && mkdir build`
 
+### Servo Not Responding
+- **Check wiring**: Verify all three wires are connected correctly
+  - Red wire to VSYS/VBUS or external 5V supply
+  - Black/Brown wire to GND
+  - Orange/Yellow wire to GPIO 16 (or configured pin)
+- **Check power**: Ensure servo is receiving adequate power
+  - Small servos may work from VSYS/VBUS
+  - Larger servos need external 5V power supply
+  - Verify external power supply ground is connected to Pico GND
+- **Check LED feedback**: When toggling the switch, the Pico LED should blink briefly
+  - If LED doesn't blink, the CGI handler may not be receiving requests
+  - Check browser console (F12) for JavaScript errors
+- **Check serial output**: Connect via USB and monitor serial output:
+  ```bash
+  picotool reboot -f -u
+  minicom -o -D /dev/ttyACM0 -b 115200
+  ```
+  - Look for "CGI handler called" messages when toggling
+  - Look for "Servo ON" or "Servo OFF" messages
+- **Try different GPIO pin**: Change `SERVO_PIN` in `main.cpp` to GPIO 0, 1, or 2
+- **Verify servo works**: Test servo with a simple PWM test program to verify hardware
+- **Check pulse width**: Servo may need different pulse width - edit `servo_on()` in `main.cpp`:
+  - Try `set_servo_position(1000);` for left position
+  - Try `set_servo_position(2000);` for right position
+  - Standard range is 500-2500 microseconds
+
 ## Technical Details
 
 - **Programming Language**: C++ (C++17 standard)
 - **Network Stack**: lwIP (lightweight IP)
-- **HTTP Server**: lwIP HTTP daemon
+- **HTTP Server**: lwIP HTTP daemon with CGI support
 - **WiFi Driver**: CYW43 (threadsafe background mode)
 - **Filesystem**: Embedded filesystem data in C array format
+- **Servo Control**: PWM-based servo control using hardware PWM
+  - Default GPIO: GPIO 16 (configurable)
+  - PWM Frequency: 50Hz (20ms period)
+  - Pulse Width Range: 500-2500 microseconds (0.5ms - 2.5ms)
+  - Default ON position: 1500 microseconds (middle/neutral)
 - **Build System**: CMake
 - **Compiler**: ARM GCC
 

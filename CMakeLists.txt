@@ -35,10 +35,12 @@ target_include_directories(pico_web_server PRIVATE
 # pico_stdlib: Standard library functions (stdio, sleep, etc.)
 # pico_cyw43_arch_lwip_threadsafe_background: WiFi driver with lwIP in threadsafe background mode
 # pico_lwip_http: lwIP HTTP server implementation
+# hardware_pwm: PWM hardware support for servo control
 target_link_libraries(pico_web_server
     pico_stdlib
     pico_cyw43_arch_lwip_threadsafe_background
     pico_lwip_http
+    hardware_pwm
 )
 
 # Enable USB stdio (for serial communication over USB)
