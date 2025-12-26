@@ -1,18 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pico 2W Web Server</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pixel Painter 13x13</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #color-palette {
+      margin-bottom: 20px;
+    }
+
+    .color {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      border: 2px solid #000;
+      margin: 3px;
+      cursor: pointer;
+    }
+
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(13, 30px);
+      grid-template-rows: repeat(13, 30px);
+      gap: 1px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      background: white;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+
+    #save-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #save-btn:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <h1>Dan's Raspberry Pi Pico 2W Web Server</h1>
-    <div id="content">
-        <p>Server is running!</p>
-        <button onclick="handleClick()">Click Me</button>
-    </div>
-    <script src="script.js"></script>
+
+  <h1>Pixel Painter 🎨</h1>
+  <div id="color-palette"></div>
+  <div id="grid"></div>
+  <button id="save-btn">💾 Save Image</button>
+
+  <canvas id="canvas" width="390" height="390" style="display:none;"></canvas>
+
+  <script>
+    const colors = [
+      '#000000', '#FFFFFF', '#FF0000', '#00FF00',
+      '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF',
+      '#C0C0C0', '#808080', '#800000', '#808000',
+      '#008000', '#800080', '#008080', '#000080'
+    ];
+
+    let selectedColor = colors[0];
+
+    const palette = document.getElementById('color-palette');
+    colors.forEach(color => {
+      const div = document.createElement('div');
+      div.className = 'color';
+      div.style.backgroundColor = color;
+      div.onclick = () => {
+        selectedColor = color;
+      };
+      palette.appendChild(div);
+    });
+
+    const grid = document.getElementById('grid');
+    const cells = [];
+
+    for (let i = 0; i < 13 * 13; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.dataset.index = i;
+      cell.addEventListener('click', () => {
+        cell.style.backgroundColor = selectedColor;
+      });
+      cells.push(cell);
+      grid.appendChild(cell);
+    }
+
+    document.getElementById('save-btn').addEventListener('click', () => {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const size = 30; // each cell is 30x30
+      cells.forEach((cell, index) => {
+        const x = (index % 13) * size;
+        const y = Math.floor(index / 13) * size;
+        ctx.fillStyle = cell.style.backgroundColor || '#FFFFFF';
+        ctx.fillRect(x, y, size, size);
+      });
+
+      const link = document.createElement('a');
+      link.download = 'pixel-art.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  </script>
 </body>
 </html>
-

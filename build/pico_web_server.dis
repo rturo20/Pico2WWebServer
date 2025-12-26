@@ -5,55 +5,55 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         000163f8  10000000  10000000  00001000  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .rodata       00039fd0  100163f8  100163f8  000173f8  2**3
+  1 .rodata       0003a98c  100163f8  100163f8  000173f8  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  2 .ARM.exidx    00000008  100503c8  100503c8  000513c8  2**2
+  2 .ARM.exidx    00000008  10050d84  10050d84  00051d84  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .binary_info  00000020  100503d0  100503d0  000513d0  2**2
+  3 .binary_info  00000020  10050d8c  10050d8c  00051d8c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  4 .ram_vector_table 00000110  20000000  20000000  00054000  2**2
+  4 .ram_vector_table 00000110  20000000  20000000  00055000  2**2
                   ALLOC
-  5 .uninitialized_data 00000010  20000110  20000110  00054000  2**3
+  5 .uninitialized_data 00000010  20000110  20000110  00055000  2**3
                   ALLOC
-  6 .data         00001318  20000120  100503f0  00052120  2**3
+  6 .data         00001318  20000120  10050dac  00052120  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  7 .tdata        00000000  20001438  20001438  0005371c  2**0
+  7 .tdata        00000000  20001438  20001438  000540d8  2**0
                   CONTENTS, ALLOC, LOAD, DATA, THREAD_LOCAL
   8 .tbss         00000000  20001438  20001438  00000000  2**0
                   ALLOC, THREAD_LOCAL
-  9 .bss          0000cce4  20001438  10051708  00054438  2**3
+  9 .bss          0000cce4  20001438  100520c4  00054438  2**3
                   ALLOC
- 10 .heap         00000800  2000e11c  10051708  0005411c  2**2
+ 10 .heap         00000800  2000e11c  100520c4  0005411c  2**2
                   ALLOC, READONLY
- 11 .scratch_x    00000000  20080000  20080000  0005371c  2**0
+ 11 .scratch_x    00000000  20080000  20080000  000540d8  2**0
                   CONTENTS
- 12 .scratch_y    00000000  20081000  20081000  0005371c  2**0
+ 12 .scratch_y    00000000  20081000  20081000  000540d8  2**0
                   CONTENTS
- 13 .stack_dummy  00000800  20081000  20081000  00054000  2**5
+ 13 .stack_dummy  00000800  20081000  20081000  00055000  2**5
                   ALLOC, READONLY
- 14 .flash_end    00000014  10051708  10051708  00053708  2**2
+ 14 .flash_end    00000014  100520c4  100520c4  000540c4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
- 15 .ARM.attributes 00000034  00000000  00000000  0005371c  2**0
+ 15 .ARM.attributes 00000034  00000000  00000000  000540d8  2**0
                   CONTENTS, READONLY
- 16 .comment      00000026  00000000  00000000  00053750  2**0
+ 16 .comment      00000026  00000000  00000000  0005410c  2**0
                   CONTENTS, READONLY
- 17 .debug_info   0008047c  00000000  00000000  00053776  2**0
+ 17 .debug_info   00080482  00000000  00000000  00054132  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_abbrev 00013118  00000000  00000000  000d3bf2  2**0
+ 18 .debug_abbrev 00013129  00000000  00000000  000d45b4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_loclists 0003e8c5  00000000  00000000  000e6d0a  2**0
+ 19 .debug_loclists 0003e8c5  00000000  00000000  000e76dd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_aranges 000026e8  00000000  00000000  001255d0  2**3
+ 20 .debug_aranges 000026e8  00000000  00000000  00125fa8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_rnglists 00009bd4  00000000  00000000  00127cb8  2**0
+ 21 .debug_rnglists 00009bd4  00000000  00000000  00128690  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line   00047848  00000000  00000000  0013188c  2**0
+ 22 .debug_line   00047848  00000000  00000000  00132264  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_str    00011766  00000000  00000000  001790d4  2**0
+ 23 .debug_str    00011766  00000000  00000000  00179aac  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 24 .debug_frame  000074d4  00000000  00000000  0018a83c  2**2
+ 24 .debug_frame  000074d4  00000000  00000000  0018b214  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 25 .debug_line_str 000001ff  00000000  00000000  00191d10  2**0
+ 25 .debug_line_str 000001ff  00000000  00000000  001926e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 /home/pi/Code/Pico2W/Webserver/build/pico_web_server.elf:     file format elf32-littlearm
@@ -158,8 +158,8 @@ Disassembly of section .text:
 
 10000124 <__default_isrs_end>:
 10000124:	7188ebf2 	.word	0x7188ebf2
-10000128:	100503d0 	.word	0x100503d0
-1000012c:	100503f0 	.word	0x100503f0
+10000128:	10050d8c 	.word	0x10050d8c
+1000012c:	10050dac 	.word	0x10050dac
 10000130:	100001a0 	.word	0x100001a0
 10000134:	e71aa390 	.word	0xe71aa390
 
@@ -167,7 +167,7 @@ Disassembly of section .text:
 10000138:	ffffded3 	.word	0xffffded3
 1000013c:	10210142 	.word	0x10210142
 10000140:	000001ff 	.word	0x000001ff
-10000144:	000515d0 	.word	0x000515d0
+10000144:	00051f8c 	.word	0x00051f8c
 10000148:	ab123579 	.word	0xab123579
 
 1000014c <_entry_point>:
@@ -226,13 +226,13 @@ Disassembly of section .text:
 1000019e:	4770      	bx	lr
 
 100001a0 <data_cpy_table>:
-100001a0:	100503f0 	.word	0x100503f0
+100001a0:	10050dac 	.word	0x10050dac
 100001a4:	20000120 	.word	0x20000120
 100001a8:	20001438 	.word	0x20001438
-100001ac:	10051708 	.word	0x10051708
+100001ac:	100520c4 	.word	0x100520c4
 100001b0:	20080000 	.word	0x20080000
 100001b4:	20080000 	.word	0x20080000
-100001b8:	10051708 	.word	0x10051708
+100001b8:	100520c4 	.word	0x100520c4
 100001bc:	20081000 	.word	0x20081000
 100001c0:	20081000 	.word	0x20081000
 100001c4:	00000000 	.word	0x00000000
@@ -6049,7 +6049,7 @@ Disassembly of section .text:
 10003d3c:	f7fd f828 	bl	10000d90 <mutex_init>
 10003d40:	e7b4      	b.n	10003cac <stdio_usb_init+0x30>
 10003d42:	bf00      	nop
-10003d44:	100503ec 	.word	0x100503ec
+10003d44:	10050da8 	.word	0x10050da8
 10003d48:	2000e094 	.word	0x2000e094
 10003d4c:	2000e110 	.word	0x2000e110
 10003d50:	10003ba5 	.word	0x10003ba5
@@ -33940,14 +33940,14 @@ Disassembly of section .text:
 1001540a:	3201      	adds	r2, #1
 1001540c:	81a2      	strh	r2, [r4, #12]
 1001540e:	e73f      	b.n	10015290 <http_send_data_ssi+0x330>
-10015410:	1005037c 	.word	0x1005037c
+10015410:	10050d38 	.word	0x10050d38
 10015414:	ff7fffec 	.word	0xff7fffec
 10015418:	00800013 	.word	0x00800013
 1001541c:	20003048 	.word	0x20003048
 10015420:	2000304c 	.word	0x2000304c
 10015424:	20002c44 	.word	0x20002c44
-10015428:	100501c8 	.word	0x100501c8
-1001542c:	100501b4 	.word	0x100501b4
+10015428:	10050b84 	.word	0x10050b84
+1001542c:	10050b70 	.word	0x10050b70
 10015430:	2800      	cmp	r0, #0
 10015432:	f47f adf9 	bne.w	10015028 <http_send_data_ssi+0xc8>
 10015436:	89a3      	ldrh	r3, [r4, #12]
@@ -34036,9 +34036,9 @@ Disassembly of section .text:
 10015522:	4804      	ldr	r0, [pc, #16]	@ (10015534 <http_send_data_ssi+0x5d4>)
 10015524:	f7ea ffce 	bl	100004c4 <panic>
 10015528:	00800013 	.word	0x00800013
-1001552c:	100501d0 	.word	0x100501d0
-10015530:	10050190 	.word	0x10050190
-10015534:	1005019c 	.word	0x1005019c
+1001552c:	10050b8c 	.word	0x10050b8c
+10015530:	10050b4c 	.word	0x10050b4c
+10015534:	10050b58 	.word	0x10050b58
 
 10015538 <http_send>:
 10015538:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -34127,7 +34127,7 @@ Disassembly of section .text:
 100155f4:	4801      	ldr	r0, [pc, #4]	@ (100155fc <http_send+0xc4>)
 100155f6:	f7ea ff65 	bl	100004c4 <panic>
 100155fa:	bf00      	nop
-100155fc:	100501e0 	.word	0x100501e0
+100155fc:	10050b9c 	.word	0x10050b9c
 
 10015600 <http_poll>:
 10015600:	b538      	push	{r3, r4, r5, lr}
@@ -34516,15 +34516,15 @@ Disassembly of section .text:
 100159ec:	4607      	mov	r7, r0
 100159ee:	e791      	b.n	10015914 <http_recv+0x290>
 100159f0:	20002c48 	.word	0x20002c48
-100159f4:	1005023c 	.word	0x1005023c
-100159f8:	10050240 	.word	0x10050240
+100159f4:	10050bf8 	.word	0x10050bf8
+100159f8:	10050bfc 	.word	0x10050bfc
 100159fc:	100183c4 	.word	0x100183c4
-10015a00:	10050248 	.word	0x10050248
+10015a00:	10050c04 	.word	0x10050c04
 10015a04:	20002c40 	.word	0x20002c40
 10015a08:	20002c3c 	.word	0x20002c3c
-10015a0c:	10050250 	.word	0x10050250
-10015a10:	10050224 	.word	0x10050224
-10015a14:	100503b4 	.word	0x100503b4
+10015a0c:	10050c0c 	.word	0x10050c0c
+10015a10:	10050be0 	.word	0x10050be0
+10015a14:	10050d70 	.word	0x10050d70
 10015a18:	495b      	ldr	r1, [pc, #364]	@ (10015b88 <http_recv+0x504>)
 10015a1a:	f7f0 fdab 	bl	10006574 <lwip_strnstr>
 10015a1e:	4603      	mov	r3, r0
@@ -34671,13 +34671,13 @@ Disassembly of section .text:
 10015b7e:	f7ea fca1 	bl	100004c4 <panic>
 10015b82:	4807      	ldr	r0, [pc, #28]	@ (10015ba0 <http_recv+0x51c>)
 10015b84:	f7ea fc9e 	bl	100004c4 <panic>
-10015b88:	10050248 	.word	0x10050248
-10015b8c:	10050218 	.word	0x10050218
-10015b90:	1005038c 	.word	0x1005038c
-10015b94:	10050230 	.word	0x10050230
-10015b98:	10050224 	.word	0x10050224
-10015b9c:	10050284 	.word	0x10050284
-10015ba0:	10050264 	.word	0x10050264
+10015b88:	10050c04 	.word	0x10050c04
+10015b8c:	10050bd4 	.word	0x10050bd4
+10015b90:	10050d48 	.word	0x10050d48
+10015b94:	10050bec 	.word	0x10050bec
+10015b98:	10050be0 	.word	0x10050be0
+10015b9c:	10050c40 	.word	0x10050c40
+10015ba0:	10050c20 	.word	0x10050c20
 10015ba4:	20002bfc 	.word	0x20002bfc
 
 10015ba8 <http_sent>:
@@ -34772,7 +34772,7 @@ Disassembly of section .text:
 10015c70:	4801      	ldr	r0, [pc, #4]	@ (10015c78 <http_sent+0xd0>)
 10015c72:	f7ea fc27 	bl	100004c4 <panic>
 10015c76:	bf00      	nop
-10015c78:	100501e0 	.word	0x100501e0
+10015c78:	10050b9c 	.word	0x10050b9c
 
 10015c7c <httpd_init>:
 10015c7c:	b510      	push	{r4, lr}
@@ -34802,9 +34802,9 @@ Disassembly of section .text:
 10015cbc:	f7ea fc02 	bl	100004c4 <panic>
 10015cc0:	10018180 	.word	0x10018180
 10015cc4:	10014e39 	.word	0x10014e39
-10015cc8:	100502b0 	.word	0x100502b0
-10015ccc:	100502e8 	.word	0x100502e8
-10015cd0:	100502cc 	.word	0x100502cc
+10015cc8:	10050c6c 	.word	0x10050c6c
+10015ccc:	10050ca4 	.word	0x10050ca4
+10015cd0:	10050c88 	.word	0x10050c88
 
 10015cd4 <memcmp>:
 10015cd4:	2a03      	cmp	r2, #3
