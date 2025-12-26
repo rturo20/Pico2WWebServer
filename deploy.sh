@@ -5,9 +5,24 @@ PICO_IP="192.168.5.216"
 PICO_MOUNT="/media/pi/RP2350"
 
 echo "=== Regenerating fsdata_custom.c ==="
+# Check if web files have changed
+WEB_FILES_CHANGED=0
+if [ ! -f "fsdata_custom.c" ] || \
+   [ "fs/index.html" -nt "fsdata_custom.c" ] || \
+   [ "fs/style.css" -nt "fsdata_custom.c" ] || \
+   [ "fs/script.js" -nt "fsdata_custom.c" ]; then
+    WEB_FILES_CHANGED=1
+fi
+
 python3 /home/pi/pico/pico-sdk/src/rp2_common/pico_lwip/tools/makefsdata.py \
     -i fs/index.html fs/style.css fs/script.js \
     -o fsdata_custom.c
+
+# If web files changed, touch fsdata_custom.c to ensure it's rebuilt
+if [ $WEB_FILES_CHANGED -eq 1 ]; then
+    echo "Web files changed - forcing rebuild of filesystem data"
+    touch fsdata_custom.c
+fi
 
 echo "=== Checking build configuration ==="
 # Create build directory if it doesn't exist
@@ -15,12 +30,12 @@ if [ ! -d "build" ]; then
     echo "Build directory not found. Creating and configuring..."
     mkdir -p build
     cd build
-    cmake ..
+    cmake -DPICO_BOARD=pico2_w ..
     cd ..
 elif [ "CMakeLists.txt" -nt "build/CMakeCache.txt" ] || [ ! -f "build/CMakeCache.txt" ]; then
     echo "CMakeLists.txt changed or build not configured. Reconfiguring..."
     cd build
-    cmake ..
+    cmake -DPICO_BOARD=pico2_w ..
     cd ..
 else
     echo "Build configuration is up to date."
@@ -28,11 +43,20 @@ fi
 
 echo "=== Building project ==="
 cd build
+# If web files changed, clean and rebuild to ensure new filesystem data is included
+if [ $WEB_FILES_CHANGED -eq 1 ]; then
+    echo "Web files changed - cleaning and rebuilding..."
+    make clean
+fi
 # Make will do incremental builds automatically
 make
 
 echo ""
 echo "✓ Build complete! pico_web_server.uf2 is ready"
+echo ""
+echo "Note: If you updated web files (HTML/CSS/JS), you may need to:"
+echo "  1. Clear your browser cache (Ctrl+Shift+Delete or Cmd+Shift+Delete)"
+echo "  2. Or do a hard refresh (Ctrl+F5 or Cmd+Shift+R)"
 echo ""
 
 # Try picotool first (if Pico is USB-connected and running)
@@ -63,7 +87,8 @@ if lsusb | grep -q "2e8a:"; then
                 if curl -s --connect-timeout 3 "http://$PICO_IP/index.html" > /dev/null 2>&1; then
                     echo "✓ SUCCESS: Pico web server is responding!"
                     echo ""
-                    curl -s "http://$PICO_IP/index.html" | head -10
+                    echo "First 15 lines of served HTML:"
+                    curl -s "http://$PICO_IP/index.html" | head -15
                     exit 0
                 fi
                 RETRY=$((RETRY + 1))
@@ -92,7 +117,8 @@ if [ -d "$PICO_MOUNT" ]; then
     echo "=== Testing connection to $PICO_IP ==="
     if curl -s --connect-timeout 5 "http://$PICO_IP/index.html" > /dev/null 2>&1; then
         echo "✓ SUCCESS: Pico web server is responding!"
-        curl -s "http://$PICO_IP/index.html" | head -10
+        echo "First 15 lines of served HTML:"
+        curl -s "http://$PICO_IP/index.html" | head -15
     else
         echo "✗ WARNING: Cannot connect to Pico at $PICO_IP"
         exit 1

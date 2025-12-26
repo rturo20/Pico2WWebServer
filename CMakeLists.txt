@@ -5,6 +5,10 @@ cmake_minimum_required(VERSION 3.13)
 # This file should be copied from the Pico SDK examples
 include(pico_sdk_import.cmake)
 
+# Set board to Pico 2W (must be before pico_sdk_init)
+# This is required for WiFi support on Pico 2W
+set(PICO_BOARD pico2_w CACHE STRING "Pico board" FORCE)
+
 # Define the project name and supported languages
 # C, CXX (C++), and ASM (Assembly) are required for Pico development
 project(pico_web_server C CXX ASM)

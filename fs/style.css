@@ -22,3 +22,9 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+#balloon {
+    position: absolute;
+    transition: all 0.2s;
+    height: 160px;
+}

@@ -5976,7 +5976,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
                 0x100163f8                        __boot2_end__ = .
                 0x00000001                        ASSERT (((__boot2_end__ - __boot2_start__) <= 0x100), ERROR: Pico second stage bootloader must be no more than 256 bytes in size)
 
-.rodata         0x100163f8    0x39fd0
+.rodata         0x100163f8    0x3a04c
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata._ZL13WIFI_PASSWORD
                 0x100163f8        0xc CMakeFiles/pico_web_server.dir/main.cpp.o
@@ -6434,74 +6434,75 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
                 0x1004fbbc       0x14 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
                 0x1004fbbc                file_index_html
  .rodata.data_script_js
-                0x1004fbd0      0x160 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
+                0x1004fbd0      0x27f CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
+ *fill*         0x1004fe4f        0x1 
  .rodata.data_style_css
-                0x1004fd30      0x1f6 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
- *fill*         0x1004ff26        0x2 
+                0x1004fe50      0x249 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
+ *fill*         0x10050099        0x3 
  .rodata.data_index_html
-                0x1004ff28      0x265 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
- *fill*         0x1005018d        0x3 
+                0x1005009c      0x16d CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/fs.c.o
+ *fill*         0x10050209        0x3 
  .rodata.http_send_data_ssi.str1.4
-                0x10050190       0x4e CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
- *fill*         0x100501de        0x2 
+                0x1005020c       0x4e CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+ *fill*         0x1005025a        0x2 
  .rodata.http_send.str1.4
-                0x100501e0       0x37 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
- *fill*         0x10050217        0x1 
+                0x1005025c       0x37 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+ *fill*         0x10050293        0x1 
  .rodata.http_recv.str1.4
-                0x10050218       0x95 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+                0x10050294       0x95 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
                                  0x99 (size before relaxing)
- *fill*         0x100502ad        0x3 
+ *fill*         0x10050329        0x3 
  .rodata.httpd_init.str1.4
-                0x100502b0       0x56 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
- *fill*         0x10050306        0x2 
+                0x1005032c       0x56 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+ *fill*         0x10050382        0x2 
  .rodata.str1.4
-                0x10050308       0x72 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+                0x10050384       0x72 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
                                  0x7a (size before relaxing)
- *fill*         0x1005037a        0x2 
+ *fill*         0x100503f6        0x2 
  .rodata.http_ssi_tag_desc
-                0x1005037c       0x10 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
-                0x1005037c                http_ssi_tag_desc
+                0x100503f8       0x10 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+                0x100503f8                http_ssi_tag_desc
  .rodata.httpd_default_filenames
-                0x1005038c       0x28 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+                0x10050408       0x28 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
  .rodata.g_pcSSIExtensions
-                0x100503b4       0x14 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
+                0x10050430       0x14 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/lib/lwip/src/apps/http/httpd.c.o
  *(.srodata*)
-                0x100503c8                        . = ALIGN (0x4)
+                0x10050444                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x100503c8                        . = ALIGN (0x4)
+                0x10050444                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x100503c8                        __exidx_start = .
+                0x10050444                        __exidx_start = .
 
-.ARM.exidx      0x100503c8        0x8
+.ARM.exidx      0x10050444        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x100503c8        0x8 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/libgcc.a(_udivmoddi4.o)
-                0x100503d0                        __exidx_end = .
-                0x100503d0                        . = ALIGN (0x4)
-                0x100503d0                        __binary_info_start = .
+ .ARM.exidx     0x10050444        0x8 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/libgcc.a(_udivmoddi4.o)
+                0x1005044c                        __exidx_end = .
+                0x1005044c                        . = ALIGN (0x4)
+                0x1005044c                        __binary_info_start = .
 
-.binary_info    0x100503d0       0x20
+.binary_info    0x1005044c       0x20
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr84
-                0x100503d0        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1005044c        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr78
-                0x100503d4        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10050450        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr54
-                0x100503d8        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10050454        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr48
-                0x100503dc        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10050458        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr42
-                0x100503e0        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1005045c        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr34
-                0x100503e4        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10050460        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr26
-                0x100503e8        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10050464        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  *(.binary_info.*)
  .binary_info.__bi_ptr202
-                0x100503ec        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
-                0x100503f0                        __binary_info_end = .
-                0x100503f0                        . = ALIGN (0x4)
+                0x10050468        0x4 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
+                0x1005046c                        __binary_info_end = .
+                0x1005046c                        . = ALIGN (0x4)
 
 .ram_vector_table
                 0x20000000      0x110
@@ -6517,7 +6518,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
  .uninitialized_data.rng_state
                 0x20000110       0x10 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_rand/rand.c.o
 
-.data           0x20000120     0x1318 load address 0x100503f0
+.data           0x20000120     0x1318 load address 0x1005046c
                 0x20000120                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -6643,23 +6644,23 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
                 0x20001438                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x20001438        0x0 load address 0x10051708
+                0x20001438        0x0 load address 0x10051784
  .tm_clone_table
                 0x20001438        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/crtbegin.o
  .tm_clone_table
                 0x20001438        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/crtend.o
 
-.igot.plt       0x20001438        0x0 load address 0x10051708
+.igot.plt       0x20001438        0x0 load address 0x10051784
  .igot.plt      0x20001438        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/crtbegin.o
 
-.tdata          0x20001438        0x0 load address 0x10051708
+.tdata          0x20001438        0x0 load address 0x10051784
                 0x20001438                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x20001438                        __tdata_end = .
                 0x20001438                        PROVIDE (__data_end__ = .)
-                0x100503f0                        __etext = LOADADDR (.data)
+                0x1005046c                        __etext = LOADADDR (.data)
 
-.tbss           0x20001438        0x0 load address 0x10051708
+.tbss           0x20001438        0x0 load address 0x10051784
                 0x20001438                        . = ALIGN (0x4)
                 0x20001438                        __bss_start__ = .
                 0x20001438                        __tls_base = .
@@ -6667,7 +6668,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
  *(.tcommon)
                 0x20001438                        __tls_end = .
 
-.bss            0x20001438     0xcce4 load address 0x10051708
+.bss            0x20001438     0xcce4 load address 0x10051784
                 0x20001438                        . = ALIGN (0x4)
                 0x20001438                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -7013,26 +7014,26 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
  *fill*         0x2000e11b        0x1 
                 0x2000e11c                        __bss_end__ = .
 
-.heap           0x2000e11c      0x800 load address 0x10051708
+.heap           0x2000e11c      0x800 load address 0x10051784
                 0x2000e11c                        __end__ = .
                 0x2000e11c                        end = __end__
  *(.heap*)
  .heap          0x2000e11c      0x800 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
                 0x20080000                        __HeapLimit = (ORIGIN (RAM) + LENGTH (RAM))
 
-.scratch_x      0x20080000        0x0 load address 0x10051708
+.scratch_x      0x20080000        0x0 load address 0x10051784
                 0x20080000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20080000                        . = ALIGN (0x4)
                 0x20080000                        __scratch_x_end__ = .
-                0x10051708                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x10051784                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20081000        0x0 load address 0x10051708
+.scratch_y      0x20081000        0x0 load address 0x10051784
                 0x20081000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20081000                        . = ALIGN (0x4)
                 0x20081000                        __scratch_y_end__ = .
-                0x10051708                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x10051784                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy
  *(.stack1*)
@@ -7041,11 +7042,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v8-m.mai
  *(.stack*)
  .stack         0x20081000      0x800 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
 
-.flash_end      0x10051708       0x14
+.flash_end      0x10051784       0x14
  *(.embedded_end_block*)
  .embedded_end_block
-                0x10051708       0x14 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
-                0x1005171c                        PROVIDE (__flash_binary_end = .)
+                0x10051784       0x14 CMakeFiles/pico_web_server.dir/home/pi/pico/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+                0x10051798                        PROVIDE (__flash_binary_end = .)
                 0x20080000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20081000                        __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20082000                        __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -7269,8 +7270,8 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/crtn.o
 OUTPUT(pico_web_server.elf elf32-littlearm)
 LOAD linker stubs
 
-.rel.dyn        0x1005171c        0x0
- .rel.iplt      0x1005171c        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/crtbegin.o
+.rel.dyn        0x10051798        0x0
+ .rel.iplt      0x10051798        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v8-m.main+fp/softfp/crtbegin.o
 
 .ARM.attributes
                 0x00000000       0x34
